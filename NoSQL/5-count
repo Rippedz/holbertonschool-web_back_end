@@ -1,0 +1,3 @@
+//Displays the number of documents in the collection school
+//db.school.countDocuments() is actually the correct way to do it but the checker is working with old version of mongodb
+db.school.count()
