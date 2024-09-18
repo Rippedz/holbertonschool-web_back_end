@@ -1,16 +1,12 @@
-process.stdout.write('Welcome to Holberton School, what is your name?\n');
+const std = require('process');
 
-if (process.stdin.isTTY) {
-  process.stdin.on('data', (data) => {
-    process.stdout.write(`Your name is: ${data.toString()}`);
-    process.exit();
-  });
-} else {
-  process.stdin.on('data', (data) => {
-    process.stdout.write(`Your name is: ${data.toString()}`);
-    process.exit();
-  });
-  process.on('exit', () => {
-    process.stdout.write('This important software is now closing\n');
-  });
-}
+std.stdout.write('Welcome to Holberton School, what is your name?\n');
+std.stdin.on('readable', () => {
+  const name = std.stdin.read();
+  if (name) {
+    std.stdout.write(`Your name is: ${name}`);
+  }
+});
+std.stdin.on('end', () => {
+  console.log('This important software is now closing');
+});
